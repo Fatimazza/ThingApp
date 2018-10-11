@@ -2,6 +2,8 @@ package com.example.fatimazza.thingapp.network;
 
 import com.example.fatimazza.thingapp.utils.Constant;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -15,6 +17,7 @@ public class RetrofitHelper {
         Retrofit mRetrofit = new Retrofit.Builder()
                 .baseUrl(Constant.WEB_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(setupLoggingInterceptor().build())
                 .build();
     }
 
@@ -23,6 +26,16 @@ public class RetrofitHelper {
             retrofitHelper = new RetrofitHelper();
         }
         return retrofitHelper;
+    }
+
+    private OkHttpClient.Builder setupLoggingInterceptor() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(logging);
+
+        return httpClient;
     }
 
 }
