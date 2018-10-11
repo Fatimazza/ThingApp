@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.model.ProductDAO;
+import com.example.fatimazza.thingapp.model.ProductImageDAO;
+import com.example.fatimazza.thingapp.utils.PicassoCacheHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +39,24 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeAdapterVie
 
     @Override
     public void onBindViewHolder(HomeAdapterViewHolder holder, int position) {
+
         final ProductDAO dataItemProduct = dataProducts.get(position);
+        final Context context = holder.rootView.getContext();
+
         holder.tvProductTitle.setText(dataItemProduct.getName());
         holder.tvProductPrice.setText(String.valueOf(dataItemProduct.getPrice()));
         holder.tvProductDesc.setText(dataItemProduct.getDescription());
+
+        List<ProductImageDAO> imagesOfProducts = dataProducts.get(position).getImages();
+
+        if(!imagesOfProducts.isEmpty()) {
+            String imagePath = imagesOfProducts.get(0).getThumb();
+            PicassoCacheHelper.getInstance(context)
+                    .load(imagePath)
+                    .placeholder(R.color.grey)
+                    .error(R.color.grey)
+                    .into(holder.ivProductThumb);
+        }
     }
 
     @Override
