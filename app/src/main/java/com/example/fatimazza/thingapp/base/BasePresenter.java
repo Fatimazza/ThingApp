@@ -19,4 +19,8 @@ public class BasePresenter<T extends BaseContractView> {
     public void setMvpView(T mvpView) {
         this.mvpView = mvpView;
     }
+
+    public ProductAPIServices getProductAPIServices() {
+        return productAPIServices;
+    }
 }
