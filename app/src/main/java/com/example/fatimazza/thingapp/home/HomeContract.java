@@ -6,6 +6,12 @@ public interface HomeContract {
 
     interface View extends BaseContractView {
 
+        void showLoading();
+
+        void showListOfProducts();
+
+        void showErrorMessage();
+
     }
 
     interface Presenter {

@@ -87,17 +87,20 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
 
     }
 
-    private void showLoading() {
+    @Override
+    public void showLoading() {
         pbLoadingIndicator.setVisibility(View.VISIBLE);
         rvListOfProducts.setVisibility(View.GONE);
     }
 
-    private void showListOfProducts() {
+    @Override
+    public void showListOfProducts() {
         tvErrorMsg.setVisibility(View.GONE);
         rvListOfProducts.setVisibility(View.VISIBLE);
     }
 
-    private void showErrorMessage() {
+    @Override
+    public void showErrorMessage() {
         tvErrorMsg.setVisibility(View.VISIBLE);
         rvListOfProducts.setVisibility(View.GONE);
     }
