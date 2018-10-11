@@ -34,6 +34,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
 
     private HomeAdapter homeAdapter;
 
+    private HomePresenter homePresenter;
+
     private List<ProductDAO> dataProducts = new ArrayList<>();
 
     @Override
@@ -41,18 +43,31 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         super.onCreate(savedInstanceState);
 
         initComponent();
+        initPresenter();
+        bindViewToPresenter();
 
         showLoading();
         loadProduct();
     }
 
-    private void initComponent() {
+    @Override
+    public void initComponent() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvListOfProducts.setLayoutManager(linearLayoutManager);
         rvListOfProducts.setHasFixedSize(true);
 
         homeAdapter = new HomeAdapter(this, dataProducts);
         rvListOfProducts.setAdapter(homeAdapter);
+    }
+
+    @Override
+    public void initPresenter() {
+        homePresenter = new HomePresenter(RetrofitHelper.getInstance().getProductAPIServices());
+    }
+
+    @Override
+    public void bindViewToPresenter() {
+        homePresenter.setMvpView(this);
     }
 
     @Override
