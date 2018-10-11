@@ -1,6 +1,7 @@
 package com.example.fatimazza.thingapp.home;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -27,7 +28,15 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initComponent();
+
         showLoading();
+    }
+
+    private void initComponent() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rvListOfProducts.setLayoutManager(linearLayoutManager);
+        rvListOfProducts.setHasFixedSize(true);
     }
 
     @Override
