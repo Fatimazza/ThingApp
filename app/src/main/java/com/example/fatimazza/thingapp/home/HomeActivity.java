@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeActivity extends BaseActivity implements HomeContract.View {
@@ -47,7 +45,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         bindViewToPresenter();
 
         showLoading();
-        loadProduct();
+        startLoadProduct();
     }
 
     @Override
@@ -75,31 +73,16 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         return R.layout.activity_home;
     }
 
-    private void loadProduct() {
-        RetrofitHelper.getInstance().getProductAPIServices()
-                .fetchProducts()
-                .enqueue(new Callback<List<ProductDAO>>() {
-                    @Override
-                    public void onResponse(Call<List<ProductDAO>> call, Response<List<ProductDAO>> response) {
-                        if (response.body() != null) {
-                            dataProducts.clear();
-                            dataProducts.addAll(response.body());
-                            homeAdapter.notifyDataSetChanged();
-                            showListOfProducts();
-                        } else {
-                            showErrorMessage();
-                        }
-                        pbLoadingIndicator.setVisibility(View.GONE);
-                    }
+    @Override
+    public void startLoadProduct() {
+        homePresenter.loadProduct();
+    }
 
-                    @Override
-                    public void onFailure(Call<List<ProductDAO>> call, Throwable t) {
-                        Log.d("retroFailure ", t.getMessage());
-                        showErrorMessage();
-                        pbLoadingIndicator.setVisibility(View.GONE);
-                    }
-                });
-
+    @Override
+    public void finishLoadProduct(Response<List<ProductDAO>> response) {
+        dataProducts.clear();
+        dataProducts.addAll(response.body());
+        homeAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -110,14 +93,21 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
 
     @Override
     public void showListOfProducts() {
+        pbLoadingIndicator.setVisibility(View.GONE);
         tvErrorMsg.setVisibility(View.GONE);
         rvListOfProducts.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showErrorMessage() {
+        pbLoadingIndicator.setVisibility(View.GONE);
         tvErrorMsg.setVisibility(View.VISIBLE);
         rvListOfProducts.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showErrorLog(Throwable throwable) {
+        Log.d("retroFailure ", throwable.getMessage());
     }
 
 }
