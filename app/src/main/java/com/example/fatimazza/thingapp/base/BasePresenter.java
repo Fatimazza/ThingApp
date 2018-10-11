@@ -1,11 +1,15 @@
 package com.example.fatimazza.thingapp.base;
 
+import com.example.fatimazza.thingapp.network.ProductAPIServices;
+
 public class BasePresenter<T extends BaseContractView> {
 
     private T mvpView;
 
-    public BasePresenter() {
+    ProductAPIServices productAPIServices;
 
+    public BasePresenter(ProductAPIServices productAPIServices) {
+        this.productAPIServices = productAPIServices;
     }
 
     public T getMvpView() {
