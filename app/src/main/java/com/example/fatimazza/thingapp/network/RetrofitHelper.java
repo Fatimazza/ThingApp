@@ -13,12 +13,20 @@ public class RetrofitHelper {
 
     private Retrofit mRetrofit;
 
+    private ProductAPIServices productAPIServices;
+
     private RetrofitHelper() {
         Retrofit mRetrofit = new Retrofit.Builder()
                 .baseUrl(Constant.WEB_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(setupLoggingInterceptor().build())
                 .build();
+
+        productAPIServices = mRetrofit.create(ProductAPIServices.class);
+    }
+
+    public ProductAPIServices getProductAPIServices() {
+        return productAPIServices;
     }
 
     public static RetrofitHelper getInstance() {
