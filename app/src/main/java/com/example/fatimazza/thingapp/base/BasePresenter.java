@@ -4,8 +4,8 @@ public class BasePresenter<T extends BaseContractView> {
 
     private T mvpView;
 
-    public BasePresenter(T mvpView) {
-        this.mvpView = mvpView;
+    public BasePresenter() {
+
     }
 
     public T getMvpView() {
