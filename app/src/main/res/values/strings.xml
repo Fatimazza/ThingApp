@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Thing App</string>
 
+    <string name="product_name">Product Name</string>
+    <string name="product_price">Rp 000</string>
+    <string name="product_desc">This is product description</string>
+
     <string name="error_message">
         No Data can be displayed. Please check your internet connection.
     </string>

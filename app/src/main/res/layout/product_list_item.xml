@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp"
+    tools:ignore="ContentDescription" >
+
+    <ImageView
+        android:id="@+id/iv_product_thumbnail"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/grey"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/tv_product_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="@string/product_name"
+        android:layout_toRightOf="@id/iv_product_thumbnail"
+        android:layout_toEndOf="@id/iv_product_thumbnail"
+        android:paddingLeft="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAlignment="center"
+        android:text="@string/product_price"
+        android:layout_toRightOf="@id/iv_product_thumbnail"
+        android:layout_toEndOf="@id/iv_product_thumbnail"
+        android:layout_below="@id/tv_product_title"
+        android:paddingLeft="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_product_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAlignment="center"
+        android:text="@string/product_desc"
+        android:layout_toRightOf="@id/iv_product_thumbnail"
+        android:layout_toEndOf="@id/iv_product_thumbnail"
+        android:layout_below="@id/tv_product_price"
+        android:paddingLeft="8dp"/>
+
+</RelativeLayout>
