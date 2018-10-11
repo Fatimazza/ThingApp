@@ -9,18 +9,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fatimazza.thingapp.R;
+import com.example.fatimazza.thingapp.model.ProductDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeAdapterViewHolder>{
 
-    private String [] mProducts = { "Product1", "Product2", "Product3" };
+    private List<ProductDAO> dataProducts = new ArrayList<>();
 
     private Context context;
 
-    public HomeAdapter(Context context) {
+    public HomeAdapter(Context context, List<ProductDAO> dataProducts) {
         this.context = context;
+        this.dataProducts = dataProducts;
     }
 
     @Override
@@ -32,22 +37,17 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeAdapterVie
 
     @Override
     public void onBindViewHolder(HomeAdapterViewHolder holder, int position) {
-        String dummyData = mProducts[position];
-        holder.tvProductTitle.setText(dummyData);
-        holder.tvProductPrice.setText(dummyData);
-        holder.tvProductDesc.setText(dummyData);
+        final ProductDAO dataItemProduct = dataProducts.get(position);
+        holder.tvProductTitle.setText(dataItemProduct.getName());
+        holder.tvProductPrice.setText(String.valueOf(dataItemProduct.getPrice()));
+        holder.tvProductDesc.setText(dataItemProduct.getDescription());
     }
 
     @Override
     public int getItemCount() {
-        if (null == mProducts) return 0;
-        return mProducts.length;
+        if (null == dataProducts) return 0;
+        return dataProducts.size();
 
-    }
-
-    void setListOfProductData(String[] mProductsDummy) {
-        mProducts = mProductsDummy;
-        notifyDataSetChanged();
     }
 
     class HomeAdapterViewHolder extends RecyclerView.ViewHolder {
