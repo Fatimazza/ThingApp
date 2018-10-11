@@ -23,6 +23,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     @BindView(R.id.pb_loading_indicator)
     public ProgressBar pbLoadingIndicator;
 
+    private HomeAdapter homeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +32,18 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         initComponent();
 
         showLoading();
+        // loadProduct();
+        // pbLoadingIndicator.setVisibility(View.GONE);
+        showListOfProducts();
     }
 
     private void initComponent() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvListOfProducts.setLayoutManager(linearLayoutManager);
         rvListOfProducts.setHasFixedSize(true);
+
+        homeAdapter = new HomeAdapter(this);
+        rvListOfProducts.setAdapter(homeAdapter);
     }
 
     @Override
