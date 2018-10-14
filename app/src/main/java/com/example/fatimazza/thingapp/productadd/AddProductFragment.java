@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.base.BaseFragment;
@@ -46,7 +48,20 @@ public class AddProductFragment extends BaseFragment implements AddProductFragme
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab_add_product:
-                fragmentContractPresenter.addFragment(new ProductsFragment());
+
+                String productName = etProductName.getEditableText().toString();
+                String productPrice = etProductPrice.getEditableText().toString();
+                String productDesc = etProductDesc.getText().toString();
+                long price = TextUtils.isEmpty(productPrice) ? 0 : Long.valueOf(productPrice);
+
+                if (TextUtils.isEmpty(productName)
+                        || TextUtils.isEmpty(productPrice)
+                        || TextUtils.isEmpty(productDesc)) {
+                    Toast.makeText(getActivity(), "Please fill in all data", Toast.LENGTH_LONG).show();
+                } else {
+                    
+                }
+
                 break;
         }
     }
