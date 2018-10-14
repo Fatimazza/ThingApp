@@ -89,12 +89,12 @@ public class AddProductFragment extends BaseFragment implements AddProductFragme
     @Override
     public void showErrorMessage() {
         Toast.makeText(getActivity(), "Data FAILED to add.", Toast.LENGTH_LONG).show();
-//        finish();
+        getActivity().getSupportFragmentManager().popBackStack();
     }
 
     @Override
     public void showSuccessMessage() {
         Toast.makeText(getActivity(), "Data successfully added.", Toast.LENGTH_LONG).show();
-//        finish();
+        getActivity().getSupportFragmentManager().popBackStack();
     }
 }

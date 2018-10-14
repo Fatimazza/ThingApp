@@ -45,6 +45,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
                 .commit();
     }
 }
