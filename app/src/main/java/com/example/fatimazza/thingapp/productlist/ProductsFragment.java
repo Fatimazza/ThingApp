@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.base.BaseFragment;
+import com.example.fatimazza.thingapp.home.HomeAdapter;
 import com.example.fatimazza.thingapp.productadd.AddProductFragment;
 
 import butterknife.BindView;
@@ -30,6 +32,8 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
     @BindView(R.id.fab_add)
     public FloatingActionButton fabAdd;
 
+    ProductsAdapter productsAdapter;
+
     public ProductsFragment() {
 
     }
@@ -43,6 +47,8 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initComponent();
+
         fabAdd.setOnClickListener(this);
     }
 
@@ -53,5 +59,15 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
                 fragmentContractPresenter.addFragment(new AddProductFragment());
                 break;
         }
+    }
+
+    @Override
+    public void initComponent() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        rvListOfProducts.setLayoutManager(linearLayoutManager);
+        rvListOfProducts.setHasFixedSize(true);
+
+        productsAdapter = new ProductsAdapter();
+        rvListOfProducts.setAdapter(productsAdapter);
     }
 }

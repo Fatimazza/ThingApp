@@ -6,6 +6,8 @@ public interface ProductFragmentContract {
 
     interface View extends BaseContractView {
 
+        void initComponent();
+
     }
 
     interface Presenter {
