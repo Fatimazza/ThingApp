@@ -50,6 +50,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         initPresenter();
         bindViewToPresenter();
 
+        loadAllProducts();
+    }
+
+    private void loadAllProducts() {
         showLoading();
         startLoadProduct();
     }
@@ -121,4 +125,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
             startActivity(intent);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAllProducts();
+    }
 }
