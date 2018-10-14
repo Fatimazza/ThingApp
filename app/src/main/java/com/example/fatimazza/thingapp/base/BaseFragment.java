@@ -10,12 +10,17 @@ import android.view.ViewGroup;
 
 import com.example.fatimazza.thingapp.R;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * the base fragment implements
  * the fragment contract view for navigation
  * to set the default methods implementation
  */
-public class BaseFragment extends Fragment implements FragmentContract.View {
+public abstract class BaseFragment extends Fragment implements FragmentContract.View {
+
+    private Unbinder unbinder;
 
     protected View rootView;
 
@@ -30,7 +35,8 @@ public class BaseFragment extends Fragment implements FragmentContract.View {
     public View onCreateView(
             @NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.activity_main, container, false);
+        rootView = inflater.inflate(getLayout(), container, false);
+        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -41,5 +47,15 @@ public class BaseFragment extends Fragment implements FragmentContract.View {
     @Override
     public void attachPresenter(FragmentContract.Presenter presenter) {
         fragmentContractPresenter = presenter;
+    }
+
+    public abstract int getLayout();
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
     }
 }
