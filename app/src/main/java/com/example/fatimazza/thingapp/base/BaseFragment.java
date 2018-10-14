@@ -18,7 +18,7 @@ import butterknife.Unbinder;
  * the fragment contract view for navigation
  * to set the default methods implementation
  */
-public abstract class BaseFragment extends Fragment implements FragmentContract.View {
+public abstract class BaseFragment extends Fragment implements FragmentContract.View, View.OnClickListener {
 
     private Unbinder unbinder;
 

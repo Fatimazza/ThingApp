@@ -12,10 +12,11 @@ import android.widget.TextView;
 
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.base.BaseFragment;
+import com.example.fatimazza.thingapp.productadd.AddProductFragment;
 
 import butterknife.BindView;
 
-public class ProductsFragment extends BaseFragment {
+public class ProductsFragment extends BaseFragment implements View.OnClickListener {
 
     @BindView(R.id.rv_products)
     public RecyclerView rvListOfProducts;
@@ -41,5 +42,16 @@ public class ProductsFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        fabAdd.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.fab_add:
+                fragmentContractPresenter.addFragment(new AddProductFragment());
+                break;
+        }
     }
 }
