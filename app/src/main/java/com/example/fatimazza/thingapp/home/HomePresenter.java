@@ -1,11 +1,8 @@
 package com.example.fatimazza.thingapp.home;
 
-import android.util.Log;
-
 import com.example.fatimazza.thingapp.base.BasePresenter;
 import com.example.fatimazza.thingapp.model.ProductDAO;
 import com.example.fatimazza.thingapp.network.ProductAPIServices;
-import com.example.fatimazza.thingapp.network.RetrofitHelper;
 
 import java.util.List;
 
