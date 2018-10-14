@@ -56,12 +56,14 @@ public class ManageActivity extends BaseActivity implements ManageContract.View 
 
     @Override
     public void showErrorMessage() {
-
+        Toast.makeText(this, "Data FAILED to add.", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     @Override
     public void showSuccessMessage() {
-
+        Toast.makeText(this, "Data successfully added.", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     public void addThing (View view) {
