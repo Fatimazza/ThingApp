@@ -16,6 +16,8 @@ public interface AddProductFragmentContract {
 
     interface Presenter {
 
+        void addProduct(String productName, long productPrice, String productDesc);
+
     }
 
 }
