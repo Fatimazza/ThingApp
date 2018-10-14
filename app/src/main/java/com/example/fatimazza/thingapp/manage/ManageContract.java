@@ -10,9 +10,17 @@ public interface ManageContract {
 
         void bindViewToPresenter();
 
+        void showErrorLog(Throwable throwable);
+
+        void showErrorMessage();
+
+        void showSuccessMessage();
+
     }
 
     interface Presenter {
+
+        void addProduct(String productName, long productPrice, String productDesc);
 
     }
 }

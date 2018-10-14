@@ -2,6 +2,7 @@ package com.example.fatimazza.thingapp.manage;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -45,14 +46,33 @@ public class ManageActivity extends BaseActivity implements ManageContract.View 
         managePresenter.setMvpView(this);
     }
 
+    @Override
+    public void showErrorLog(Throwable throwable) {
+        Log.d("retroFailure ", throwable.getMessage());
+    }
+
+    @Override
+    public void showErrorMessage() {
+
+    }
+
+    @Override
+    public void showSuccessMessage() {
+
+    }
 
     public void addThing (View view) {
-        if (TextUtils.isEmpty(etProductName.getText().toString())
-                || TextUtils.isEmpty(etProductPrice.getText().toString())
-                || TextUtils.isEmpty(etProductDesc.getText().toString())) {
+        String productName = etProductName.getEditableText().toString();
+        String productPrice = etProductPrice.getEditableText().toString();
+        String productDesc = etProductDesc.getText().toString();
+        long price = Long.valueOf(productPrice);
+
+        if (TextUtils.isEmpty(productName)
+                || TextUtils.isEmpty(productPrice)
+                || TextUtils.isEmpty(productDesc)) {
             Toast.makeText(this, "Please fill in all data", Toast.LENGTH_LONG).show();
         } else {
-
+            managePresenter.addProduct(productName, price, productDesc);
         }
     }
 }

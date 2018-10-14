@@ -9,4 +9,9 @@ public class ManagePresenter extends BasePresenter<ManageContract.View>
     public ManagePresenter(ProductAPIServices productAPIServices) {
         super(productAPIServices);
     }
+
+    @Override
+    public void addProduct(String productName, long productPrice, String productDesc) {
+
+    }
 }
