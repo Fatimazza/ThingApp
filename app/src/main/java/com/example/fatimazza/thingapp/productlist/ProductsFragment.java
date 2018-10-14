@@ -108,7 +108,7 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
         rvListOfProducts.setLayoutManager(linearLayoutManager);
         rvListOfProducts.setHasFixedSize(true);
 
-        productsAdapter = new ProductsAdapter();
+        productsAdapter = new ProductsAdapter(getActivity(), dataProducts);
         rvListOfProducts.setAdapter(productsAdapter);
     }
 
