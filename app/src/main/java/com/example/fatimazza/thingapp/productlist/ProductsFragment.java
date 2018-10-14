@@ -14,10 +14,15 @@ import android.widget.TextView;
 
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.base.BaseFragment;
+import com.example.fatimazza.thingapp.model.ProductDAO;
 import com.example.fatimazza.thingapp.network.RetrofitHelper;
 import com.example.fatimazza.thingapp.productadd.AddProductFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
+import retrofit2.Response;
 
 public class ProductsFragment extends BaseFragment implements ProductFragmentContract.View {
 
@@ -36,6 +41,8 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
     private ProductsAdapter productsAdapter;
 
     private ProductsPresenter productsPresenter;
+
+    private List<ProductDAO> dataProducts = new ArrayList<>();
 
     public ProductsFragment() {
 
@@ -66,7 +73,14 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
 
     @Override
     public void startLoadProduct() {
+        productsPresenter.loadProduct();
+    }
 
+    @Override
+    public void finishLoadProduct(Response<List<ProductDAO>> response) {
+        dataProducts.clear();
+        dataProducts.addAll(response.body());
+        productsAdapter.notifyDataSetChanged();
     }
 
     @Override

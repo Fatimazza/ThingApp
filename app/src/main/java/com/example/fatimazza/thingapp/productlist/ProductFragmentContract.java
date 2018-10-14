@@ -1,6 +1,11 @@
 package com.example.fatimazza.thingapp.productlist;
 
 import com.example.fatimazza.thingapp.base.BaseContractView;
+import com.example.fatimazza.thingapp.model.ProductDAO;
+
+import java.util.List;
+
+import retrofit2.Response;
 
 public interface ProductFragmentContract {
 
@@ -21,6 +26,8 @@ public interface ProductFragmentContract {
         void showErrorMessage();
 
         void startLoadProduct();
+
+        void finishLoadProduct(Response<List<ProductDAO>> response);
 
     }
 

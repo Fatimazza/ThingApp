@@ -25,7 +25,7 @@ public class ProductsPresenter extends BasePresenter<ProductFragmentContract.Vie
                     @Override
                     public void onResponse(Call<List<ProductDAO>> call, Response<List<ProductDAO>> response) {
                         if (response.body() != null) {
-
+                            getMvpView().finishLoadProduct(response);
                             getMvpView().showListOfProducts();
                         } else {
                             getMvpView().showErrorMessage();
