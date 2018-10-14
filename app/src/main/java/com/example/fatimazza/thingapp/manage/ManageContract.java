@@ -6,6 +6,10 @@ public interface ManageContract {
 
     interface View extends BaseContractView {
 
+        void initPresenter();
+
+        void bindViewToPresenter();
+
     }
 
     interface Presenter {

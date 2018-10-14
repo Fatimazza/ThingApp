@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.base.BaseActivity;
+import com.example.fatimazza.thingapp.network.RetrofitHelper;
 
 import butterknife.BindView;
 
@@ -22,6 +23,8 @@ public class ManageActivity extends BaseActivity implements ManageContract.View 
     @BindView(R.id.et_desc)
     public EditText etProductDesc;
 
+    private ManagePresenter managePresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,17 @@ public class ManageActivity extends BaseActivity implements ManageContract.View 
     public int getLayout() {
         return R.layout.activity_manage;
     }
+
+    @Override
+    public void initPresenter() {
+        managePresenter = new ManagePresenter(RetrofitHelper.getInstance().getProductAPIServices());
+    }
+
+    @Override
+    public void bindViewToPresenter() {
+        managePresenter.setMvpView(this);
+    }
+
 
     public void addThing (View view) {
         if (TextUtils.isEmpty(etProductName.getText().toString())
