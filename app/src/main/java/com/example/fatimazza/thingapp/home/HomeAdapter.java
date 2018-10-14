@@ -44,7 +44,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeAdapterVie
         final Context context = holder.rootView.getContext();
 
         holder.tvProductTitle.setText(dataItemProduct.getName());
-        holder.tvProductPrice.setText(String.valueOf(dataItemProduct.getPrice()));
+        holder.tvProductPrice.setText(String.valueOf("$ " +dataItemProduct.getPrice()));
         holder.tvProductDesc.setText(dataItemProduct.getDescription());
 
         List<ProductImageDAO> imagesOfProducts = dataProducts.get(position).getImages();

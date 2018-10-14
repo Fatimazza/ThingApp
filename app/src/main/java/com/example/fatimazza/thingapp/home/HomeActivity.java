@@ -1,6 +1,8 @@
 package com.example.fatimazza.thingapp.home;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.base.BaseActivity;
+import com.example.fatimazza.thingapp.manage.ManageActivity;
 import com.example.fatimazza.thingapp.model.ProductDAO;
 import com.example.fatimazza.thingapp.network.RetrofitHelper;
 
@@ -29,6 +32,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
 
     @BindView(R.id.pb_loading_indicator)
     public ProgressBar pbLoadingIndicator;
+
+    @BindView(R.id.fab_add)
+    public FloatingActionButton fabAdd;
 
     private HomeAdapter homeAdapter;
 
@@ -108,6 +114,11 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     @Override
     public void showErrorLog(Throwable throwable) {
         Log.d("retroFailure ", throwable.getMessage());
+    }
+
+    public void addNewThingToList (View view) {
+            Intent intent = new Intent(this, ManageActivity.class);
+            startActivity(intent);
     }
 
 }
