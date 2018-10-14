@@ -8,6 +8,17 @@ public interface ProductFragmentContract {
 
         void initComponent();
 
+
+        void showLoading();
+
+        void showListOfProducts();
+
+        void showErrorLog(Throwable throwable);
+
+        void showErrorMessage();
+
+        void startLoadProduct();
+
     }
 
     interface Presenter {

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -48,8 +49,19 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
         super.onViewCreated(view, savedInstanceState);
 
         initComponent();
-
         fabAdd.setOnClickListener(this);
+
+        loadAllProducts();
+    }
+
+    private void loadAllProducts() {
+        showLoading();
+        startLoadProduct();
+    }
+
+    @Override
+    public void startLoadProduct() {
+
     }
 
     @Override
@@ -69,5 +81,30 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
 
         productsAdapter = new ProductsAdapter();
         rvListOfProducts.setAdapter(productsAdapter);
+    }
+
+    @Override
+    public void showLoading() {
+        pbLoadingIndicator.setVisibility(View.VISIBLE);
+        rvListOfProducts.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showListOfProducts() {
+        pbLoadingIndicator.setVisibility(View.GONE);
+        tvErrorMsg.setVisibility(View.GONE);
+        rvListOfProducts.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showErrorMessage() {
+        pbLoadingIndicator.setVisibility(View.GONE);
+        tvErrorMsg.setVisibility(View.VISIBLE);
+        rvListOfProducts.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showErrorLog(Throwable throwable) {
+        Log.d("retroFailure ", throwable.getMessage());
     }
 }
