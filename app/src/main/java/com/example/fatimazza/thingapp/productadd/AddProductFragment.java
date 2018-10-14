@@ -45,6 +45,9 @@ public class AddProductFragment extends BaseFragment implements AddProductFragme
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fabAddProduct.setOnClickListener(this);
+
+        initPresenter();
+        bindViewToPresenter();
     }
 
     @Override
