@@ -16,7 +16,7 @@ import com.example.fatimazza.thingapp.productadd.AddProductFragment;
 
 import butterknife.BindView;
 
-public class ProductsFragment extends BaseFragment implements View.OnClickListener {
+public class ProductsFragment extends BaseFragment implements ProductFragmentContract.View {
 
     @BindView(R.id.rv_products)
     public RecyclerView rvListOfProducts;

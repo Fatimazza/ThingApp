@@ -13,7 +13,7 @@ import com.example.fatimazza.thingapp.productlist.ProductsFragment;
 
 import butterknife.BindView;
 
-public class AddProductFragment extends BaseFragment {
+public class AddProductFragment extends BaseFragment implements AddProductFragmentContract.View {
 
     @BindView(R.id.et_name)
     public EditText etProductName;
