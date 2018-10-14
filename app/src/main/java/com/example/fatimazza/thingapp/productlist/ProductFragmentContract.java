@@ -8,6 +8,9 @@ public interface ProductFragmentContract {
 
         void initComponent();
 
+        void initPresenter();
+
+        void bindViewToPresenter();
 
         void showLoading();
 

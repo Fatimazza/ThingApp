@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.base.BaseFragment;
-import com.example.fatimazza.thingapp.home.HomeAdapter;
+import com.example.fatimazza.thingapp.network.RetrofitHelper;
 import com.example.fatimazza.thingapp.productadd.AddProductFragment;
 
 import butterknife.BindView;
@@ -33,7 +33,9 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
     @BindView(R.id.fab_add)
     public FloatingActionButton fabAdd;
 
-    ProductsAdapter productsAdapter;
+    private ProductsAdapter productsAdapter;
+
+    private ProductsPresenter productsPresenter;
 
     public ProductsFragment() {
 
@@ -51,6 +53,9 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
         initComponent();
         fabAdd.setOnClickListener(this);
 
+        initPresenter();
+        bindViewToPresenter();
+
         loadAllProducts();
     }
 
@@ -62,6 +67,16 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
     @Override
     public void startLoadProduct() {
 
+    }
+
+    @Override
+    public void initPresenter() {
+        productsPresenter = new ProductsPresenter(RetrofitHelper.getInstance().getProductAPIServices());
+    }
+
+    @Override
+    public void bindViewToPresenter() {
+        productsPresenter.setMvpView(this);
     }
 
     @Override
