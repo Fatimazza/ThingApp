@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.base.BaseFragment;
+import com.example.fatimazza.thingapp.network.RetrofitHelper;
 
 import butterknife.BindView;
 
@@ -28,6 +29,8 @@ public class AddProductFragment extends BaseFragment implements AddProductFragme
 
     @BindView(R.id.fab_add_product)
     public FloatingActionButton fabAddProduct;
+
+    AddProductPresenter addProductPresenter;
 
     public AddProductFragment() {
 
@@ -59,11 +62,20 @@ public class AddProductFragment extends BaseFragment implements AddProductFragme
                         || TextUtils.isEmpty(productDesc)) {
                     Toast.makeText(getActivity(), "Please fill in all data", Toast.LENGTH_LONG).show();
                 } else {
-                    
+                    addProductPresenter.addProduct(productName, price, productDesc);
                 }
-
                 break;
         }
+    }
+
+    @Override
+    public void initPresenter() {
+        addProductPresenter = new AddProductPresenter(RetrofitHelper.getInstance().getProductAPIServices());
+    }
+
+    @Override
+    public void bindViewToPresenter() {
+        addProductPresenter.setMvpView(this);
     }
 
     @Override

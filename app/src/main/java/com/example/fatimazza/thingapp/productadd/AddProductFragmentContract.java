@@ -6,6 +6,10 @@ public interface AddProductFragmentContract {
 
     interface View extends BaseContractView {
 
+        void initPresenter();
+
+        void bindViewToPresenter();
+
         void showErrorLog(Throwable throwable);
 
         void showErrorMessage();
