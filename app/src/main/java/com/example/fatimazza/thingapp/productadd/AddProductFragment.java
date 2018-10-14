@@ -5,13 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.base.BaseFragment;
-import com.example.fatimazza.thingapp.productlist.ProductsFragment;
 
 import butterknife.BindView;
 
@@ -64,5 +64,22 @@ public class AddProductFragment extends BaseFragment implements AddProductFragme
 
                 break;
         }
+    }
+
+    @Override
+    public void showErrorLog(Throwable throwable) {
+        Log.d("retroFailure ", throwable.getMessage());
+    }
+
+    @Override
+    public void showErrorMessage() {
+        Toast.makeText(getActivity(), "Data FAILED to add.", Toast.LENGTH_LONG).show();
+//        finish();
+    }
+
+    @Override
+    public void showSuccessMessage() {
+        Toast.makeText(getActivity(), "Data successfully added.", Toast.LENGTH_LONG).show();
+//        finish();
     }
 }
