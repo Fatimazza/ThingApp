@@ -130,4 +130,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         super.onResume();
         loadAllProducts();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        homePresenter.setMvpView(null);
+    }
 }

@@ -80,4 +80,10 @@ public class ManageActivity extends BaseActivity implements ManageContract.View 
             managePresenter.addProduct(productName, price, productDesc);
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        managePresenter.setMvpView(null);
+    }
 }
