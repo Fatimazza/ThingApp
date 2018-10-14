@@ -134,6 +134,6 @@ public class ProductsFragment extends BaseFragment implements ProductFragmentCon
 
     @Override
     public void showErrorLog(Throwable throwable) {
-        Log.d("retroFailure ", throwable.getMessage());
+        Log.d("retroFailure ", "" +throwable.getMessage());
     }
 }

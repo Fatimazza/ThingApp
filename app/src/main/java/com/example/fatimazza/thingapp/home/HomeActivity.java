@@ -117,7 +117,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
 
     @Override
     public void showErrorLog(Throwable throwable) {
-        Log.d("retroFailure ", throwable.getMessage());
+        Log.d("retroFailure ", "" +throwable.getMessage());
     }
 
     public void addNewThingToList (View view) {
