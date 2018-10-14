@@ -16,11 +16,7 @@
 
         <activity android:name=".home.HomeActivity"
             android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".manage.ManageActivity"
@@ -31,7 +27,13 @@
                 android:value="com.example.fatimazza.thingapp.home.HomeActivity" />
         </activity>
 
-        <activity android:name=".main.MainActivity"></activity>
+        <activity android:name=".main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
