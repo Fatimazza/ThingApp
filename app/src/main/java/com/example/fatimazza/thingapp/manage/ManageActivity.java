@@ -29,6 +29,9 @@ public class ManageActivity extends BaseActivity implements ManageContract.View 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initPresenter();
+        bindViewToPresenter();
     }
 
     @Override
@@ -65,7 +68,7 @@ public class ManageActivity extends BaseActivity implements ManageContract.View 
         String productName = etProductName.getEditableText().toString();
         String productPrice = etProductPrice.getEditableText().toString();
         String productDesc = etProductDesc.getText().toString();
-        long price = Long.valueOf(productPrice);
+        long price = TextUtils.isEmpty(productPrice) ? 0 : Long.valueOf(productPrice);
 
         if (TextUtils.isEmpty(productName)
                 || TextUtils.isEmpty(productPrice)
