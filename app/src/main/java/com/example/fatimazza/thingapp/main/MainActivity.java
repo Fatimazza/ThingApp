@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.example.fatimazza.thingapp.R;
 import com.example.fatimazza.thingapp.base.BaseActivity;
 import com.example.fatimazza.thingapp.base.BaseFragment;
+import com.example.fatimazza.thingapp.productlist.ProductsFragment;
 
 public class MainActivity extends BaseActivity implements MainContract.View {
 
@@ -15,6 +16,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         super.onCreate(savedInstanceState);
 
         initPresenter();
+        setFragment(new ProductsFragment());
     }
 
     @Override
