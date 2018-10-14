@@ -1,6 +1,6 @@
 package com.example.fatimazza.thingapp.base;
 
-public class FragmentContract {
+public interface FragmentContract {
 
     interface View extends BaseContractView {
 
