@@ -23,5 +23,7 @@ public interface ProductFragmentContract {
 
     interface Presenter {
 
+        void loadProduct();
+
     }
 }
